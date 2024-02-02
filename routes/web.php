@@ -28,4 +28,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('provinsi', function () {
+    return '<h1>Welcome Bawaslu Provinsi</h1>';
+})->middleware(['auth', 'verified','role:bawaslu-provinsi']);
+
+Route::get('kota', function () {
+    return '<h1>Welcome Bawaslu Kota</h1>';
+})->middleware(['auth', 'verified','role:bawaslu-kota|bawaslu-provinsi']);
+
 require __DIR__.'/auth.php';

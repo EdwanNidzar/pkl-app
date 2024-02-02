@@ -29,6 +29,19 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // ! This is the original code. code ini tidak di gunakan untuk saat ini.
+        // if (Auth::user()->hasRole('bawaslu-provinsi')) {
+        //     return redirect()->to('bawaslu-provinsi');
+        // }
+
+        // if (Auth::user()->hasRole('bawaslu-kota')) {
+        //     return redirect()->to('bawaslu-kota');
+        // }
+
+        // if (Auth::user()->hasRole('panwascam')) {
+        //     return redirect()->to('panwascam');
+        // }
+
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
