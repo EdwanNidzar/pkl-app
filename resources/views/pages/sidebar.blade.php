@@ -39,6 +39,15 @@
             </p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('jenispelanggaran.index') }}"
+            class="nav-link {{ request()->routeIs('jenispelanggaran.index') ? 'active' : '' }}">
+            <i class="bi bi-list-ul me-2"></i>
+            <p>
+              Jenis Pelanggaran
+            </p>
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
