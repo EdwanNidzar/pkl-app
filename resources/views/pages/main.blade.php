@@ -34,9 +34,6 @@
 
   {{-- datatables --}}
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
-
-  {{-- Trix Editor --}}
-  <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

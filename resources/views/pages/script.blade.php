@@ -7,6 +7,10 @@
 </script>
 
 <script>
+  $('#pelanggaran').DataTable();
+</script>
+
+<script>
   var urlProvinsi = "https://ibnux.github.io/data-indonesia/provinsi.json";
   var urlKabupaten = "https://ibnux.github.io/data-indonesia/kabupaten/";
   var urlKecamatan = "https://ibnux.github.io/data-indonesia/kecamatan/";

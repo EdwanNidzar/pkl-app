@@ -48,6 +48,20 @@
             </p>
           </a>
         </li>
+
+        @if (auth()->user()->hasRole('bawaslu-provinsi') ||
+                auth()->user()->hasRole('bawaslu-provinsi'))
+          <li class="nav-item">
+            <a href="{{ route('pelanggaran.index') }}"
+              class="nav-link {{ request()->routeIs('pelanggaran.index') ? 'active' : '' }}">
+              <i class="bi bi-list-ul me-2"></i>
+              <p>
+                Pelanggaran
+              </p>
+            </a>
+          </li>
+        @endif
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

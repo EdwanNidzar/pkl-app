@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ParpolController;
 use App\Http\Controllers\JenisPelanggaranController;
+use App\Http\Controllers\PelanggaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Route::middleware('auth')->group(function () {
 Route::resource('parpols', ParpolController::class)->middleware(['auth', 'verified','role:bawaslu-provinsi']);
 
 Route::resource('jenispelanggaran', JenisPelanggaranController::class)->middleware(['auth', 'verified','role:bawaslu-provinsi']);
+
+Route::resource('pelanggaran', PelanggaranController::class)->middleware(['auth', 'verified','role:bawaslu-provinsi|bawaslu-kota']);
 
 Route::get('provinsi', function () {
     return '<h1>Welcome Bawaslu Provinsi</h1>';
