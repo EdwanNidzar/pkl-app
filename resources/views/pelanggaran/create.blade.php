@@ -37,8 +37,8 @@
                     <div class="form-group">
                       <label for="jenis_pelanggaran">Jenis pelanggaran</label>
                       <select name="jenis_pelanggaran" id="jenis_pelanggaran" class="form-control">
+                        <option value="#" disabled selected>.: PILIH JENIS PELANGGARAN :.</option>
                         @foreach ($jenis_pelanggaran as $item)
-                          <option value="#" disabled selected>.: PILIH JENIS PELANGGARAN :.</option>
                           <option value="{{ $item->id }}">{{ $item->jenis_pelanggaran }}</option>
                         @endforeach
                       </select>
@@ -53,8 +53,8 @@
                     <div class="form-group">
                       <label for="nama_partai">Partai</label>
                       <select name="nama_partai" id="nama_partai" class="form-control">
+                        <option value="#" disabled selected>.: PILIH PARTAI :.</option>
                         @foreach ($parpol as $item)
-                          <option value="#" disabled selected>.: PILIH PARTAI :.</option>
                           <option value="{{ $item->id }}">{{ $item->nama_partai }}</option>
                         @endforeach
                       </select>

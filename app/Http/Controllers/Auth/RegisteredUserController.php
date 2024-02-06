@@ -44,8 +44,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        // TODO : set role based on user input. nanti buat panwascam
-        $user->assignRole('bawaslu-provinsi');
+        $user->assignRole('panwascam');
 
         event(new Registered($user));
 

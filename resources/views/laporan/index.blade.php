@@ -1,7 +1,7 @@
 @extends('pages.main')
 
 <!-- isi bagian judul halaman -->
-@section('judul_halaman', 'BAWASLU | DATA PELANGGARAN')
+@section('judul_halaman', 'BAWASLU | DATA LAPORAN PELANGGARAN')
 
 @section('content')
 
@@ -25,7 +25,7 @@
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item active"><a href="{{ route('dashboard') }}">HOME</a></li>
-            <li class="breadcrumb-item">Pelanggaran</li>
+            <li class="breadcrumb-item">Laporan Pelanggaran</li>
           </ol>
         </div>
       </div>
@@ -40,40 +40,30 @@
       </div>
 
       <div class="card-body">
-        <a href="{{ route('pelanggaran.create') }}" type="button" class="btn btn-primary mb-3">Tambah Data</a>
-        <table id="pelanggaran" class="table table-bordered  table-striped mb-3">
+        <a href="{{ route('laporan.create') }}" type="button" class="btn btn-primary mb-3">Tambah Data</a>
+        <table id="laporan" class="table table-bordered  table-striped mb-3">
           <thead>
             <tr align="center">
               <th>NO</th>
-              <th>Jenis Pelanggaran</th>
-              <th>Nama Partai</th>
-              <th>Status Peserta Pemilu</th>
               <th>Nama Peserta Pemilu</th>
-              <th>Bukti Pendukung</th>
-              <th>Tanggal</th>
-              <th>Keterangan</th>
+              <th>Nama Partai</th>
+              <th>Jenis Pelanggaran</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            @foreach ($view_pelanggarans as $data)
+            @foreach ($view_laporans as $data)
               <tr align="center">
                 <td>{{ $loop->iteration }}</td>
+                <td>{{ $data->nama_bacaleg }}</td>
                 <td>{{ $data->jenis_pelanggaran }}</td>
                 <td>{{ $data->nama_partai }}</td>
-                <td>{{ $data->status_peserta_pemilu }}</td>
-                <td>{{ $data->nama_bacaleg }}</td>
                 <td>
-                  <img src="{{ $data->bukti }}" alt="Bukti Pendukung" width="25%" height="25%">
-                </td>
-                <td>{{ $data->tanggal_input }}</td>
-                <td>{{ $data->keterangan }}</td>
-                <td>
-                  <a href="{{ route('pelanggaran.show', $data->pelanggaran_id) }}"> <button class="btn btn-light m-2"><i
+                  <a href="{{ route('laporan.show', $data->laporan_id) }}"> <button class="btn btn-light m-2"><i
                         class="bi bi-eye-fill"></i></button></a>
-                  <a href="{{ route('pelanggaran.edit', $data->pelanggaran_id) }}"> <button
-                      class="btn btn-secondary m-2"><i class="bi bi-pencil-square"></i></button></a>
-                  <form action="{{ route('pelanggaran.destroy', $data->pelanggaran_id) }}" method="POST"
+                  <a href="{{ route('laporan.edit', $data->laporan_id) }}"> <button class="btn btn-secondary m-2"><i
+                        class="bi bi-pencil-square"></i></button></a>
+                  <form action="{{ route('laporan.destroy', $data->laporan_id) }}" method="POST"
                     onsubmit="return confirm('Apakah yakin menghapus data ini?')" class="d-inline">
                     @csrf
                     @method('DELETE')

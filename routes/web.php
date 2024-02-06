@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ParpolController;
 use App\Http\Controllers\JenisPelanggaranController;
 use App\Http\Controllers\PelanggaranController;
+use App\Http\Controllers\LaporanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +18,27 @@ use App\Http\Controllers\PelanggaranController;
 |
 */
 
+/*
+|--------------------------------------------------------------------------
+    TODO : give middleware verified to each route
+|--------------------------------------------------------------------------
+|
+| example :
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::resource('parpols', ParpolController::class)->middleware(['auth', 'verified','role:bawaslu-provinsi']);
+
+*/
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -31,18 +46,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('parpols', ParpolController::class)->middleware(['auth', 'verified','role:bawaslu-provinsi']);
+Route::resource('parpols', ParpolController::class)->middleware(['auth','role:bawaslu-provinsi']);
 
-Route::resource('jenispelanggaran', JenisPelanggaranController::class)->middleware(['auth', 'verified','role:bawaslu-provinsi']);
+Route::resource('jenispelanggaran', JenisPelanggaranController::class)->middleware(['auth','role:bawaslu-provinsi']);
 
-Route::resource('pelanggaran', PelanggaranController::class)->middleware(['auth', 'verified','role:bawaslu-provinsi|bawaslu-kota']);
+Route::resource('pelanggaran', PelanggaranController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota']);
+
+Route::resource('laporan', LaporanController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
 
 Route::get('provinsi', function () {
     return '<h1>Welcome Bawaslu Provinsi</h1>';
-})->middleware(['auth', 'verified','role:bawaslu-provinsi']);
+})->middleware(['auth','role:bawaslu-provinsi']);
 
 Route::get('kota', function () {
     return '<h1>Welcome Bawaslu Kota</h1>';
-})->middleware(['auth', 'verified','role:bawaslu-kota|bawaslu-provinsi']);
+})->middleware(['auth','role:bawaslu-kota|bawaslu-provinsi']);
 
 require __DIR__.'/auth.php';

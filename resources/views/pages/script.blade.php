@@ -1,3 +1,4 @@
+script
 <script>
   $('#parpols').DataTable();
 </script>
@@ -8,6 +9,10 @@
 
 <script>
   $('#pelanggaran').DataTable();
+</script>
+
+<script>
+  $('#laporan').DataTable();
 </script>
 
 <script>
@@ -163,7 +168,13 @@
   });
 </script>
 <script>
-  document.addEventListener('trix-file-accept', function(e) {
-    e.preventDefault();
-  })
+  $(document).ready(function() {
+    $('#pelanggaran_id').change(function() {
+      var pelanggaran_id = $(this).val();
+      $('.item').hide();
+      $('#item_' + pelanggaran_id + ', #status_item_' + pelanggaran_id + ', #nama_bacaleg_item_' +
+          pelanggaran_id + ', #bukti_item_' + pelanggaran_id)
+        .show();
+    });
+  });
 </script>

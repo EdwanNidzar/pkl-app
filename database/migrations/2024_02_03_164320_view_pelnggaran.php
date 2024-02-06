@@ -14,14 +14,14 @@ return new class extends Migration
         DB::statement("
             CREATE VIEW view_pelanggaran AS
             SELECT
-                pelanggarans.id,
-                jenis_pelanggarans.jenis_pelanggaran,
-                parpols.nama_partai,
-                pelanggarans.status_peserta_pemilu,
-                pelanggarans.nama_bacaleg,
-                pelanggarans.bukti,
-                pelanggarans.tanggal_input,
-                pelanggarans.keterangan,
+                pelanggarans.id as pelanggaran_id,
+                jenis_pelanggarans.jenis_pelanggaran as jenis_pelanggaran,
+                parpols.nama_partai as nama_partai,
+                pelanggarans.status_peserta_pemilu as status_peserta_pemilu,
+                pelanggarans.nama_bacaleg as nama_bacaleg,
+                pelanggarans.bukti as bukti,
+                pelanggarans.tanggal_input as tanggal_input,
+                pelanggarans.keterangan as keterangan,
                 pelanggarans.created_at,
                 pelanggarans.updated_at
             FROM pelanggarans
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('view_pelanggaran');
+        DB::statement('DROP VIEW view_pelanggaran');
     }
 };
