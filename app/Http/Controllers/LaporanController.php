@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Pelanggaran;
+use App\Models\Verif;
 use App\Models\Laporan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+
 
 class LaporanController extends Controller
 {
@@ -92,4 +93,47 @@ class LaporanController extends Controller
         $laporan->delete();
         return redirect()->route('laporan.index')->with('success', 'Laporan berhasil dihapus');
     }
+
+    /**
+     * Verify the specified resource.
+     */
+    public function verify(string $id)
+    {
+       $verif = Verif::where('laporan_id', $id)->first();
+
+       if ($verif) {
+           $verif->status = 1;
+           $verif->save();
+       } else {
+           $verif = new Verif();
+           $verif->laporan_id = $id;
+           $verif->status = 1;
+           $verif->save();
+       }
+   
+       return redirect()->route('laporan.index')->with('success', 'Status berhasil disimpan atau diperbarui');
+   
+    }
+
+
+    /**
+     * Reject the specified resource.
+     */
+    public function reject(string $id)
+    {
+        $verif = Verif::where('laporan_id', $id)->first();
+ 
+        if ($verif) {
+            $verif->status = 2;
+            $verif->save();
+        } else {
+            $verif = new Verif();
+            $verif->laporan_id = $id;
+            $verif->status = 2;
+            $verif->save();
+        }
+    
+        return redirect()->route('laporan.index')->with('success', 'Status berhasil disimpan atau diperbarui');
+    
+     }
 }

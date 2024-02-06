@@ -48,6 +48,7 @@
               <th>Nama Peserta Pemilu</th>
               <th>Nama Partai</th>
               <th>Jenis Pelanggaran</th>
+              <th>Status</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -59,16 +60,41 @@
                 <td>{{ $data->jenis_pelanggaran }}</td>
                 <td>{{ $data->nama_partai }}</td>
                 <td>
-                  <a href="{{ route('laporan.show', $data->laporan_id) }}"> <button class="btn btn-light m-2"><i
-                        class="bi bi-eye-fill"></i></button></a>
-                  <a href="{{ route('laporan.edit', $data->laporan_id) }}"> <button class="btn btn-secondary m-2"><i
-                        class="bi bi-pencil-square"></i></button></a>
-                  <form action="{{ route('laporan.destroy', $data->laporan_id) }}" method="POST"
-                    onsubmit="return confirm('Apakah yakin menghapus data ini?')" class="d-inline">
-                    @csrf
-                    @method('DELETE')
-                    <button class="btn btn-danger m-2"><i class="bi bi-trash-fill"></i></button>
-                  </form>
+                  @if ($data->status == 0)
+                    Belum Verif
+                  @elseif ($data->status == 1)
+                    Verif
+                  @elseif ($data->status == 2)
+                    Reject
+                  @endif
+                </td>
+
+                <td>
+                  <div class="btn-group" role="group" aria-label="Basic example">
+                    <a href="{{ route('laporan.show', $data->laporan_id) }}" class="btn btn-light m-2"><i
+                        class="bi bi-eye-fill"></i></a>
+                    <a href="{{ route('laporan.edit', $data->laporan_id) }}" class="btn btn-secondary m-2"><i
+                        class="bi bi-pencil-square"></i></a>
+                    <form action="{{ route('laporan.destroy', $data->laporan_id) }}" method="POST"
+                      onsubmit="return confirm('Apakah yakin menghapus data ini?')" class="d-inline">
+                      @csrf
+                      @method('DELETE')
+                      <button type="submit" class="btn btn-danger m-2"><i class="bi bi-trash-fill"></i></button>
+                    </form>
+                    <form action="{{ route('laporan.verify', $data->laporan_id) }}" method="POST"
+                      onsubmit="return confirm('Apakah yakin menyetujui data ini?')">
+                      @csrf
+                      @method('POST')
+                      <button type="submit" class="btn btn-primary m-2"><i class="fas fa-check"></i></button>
+                    </form>
+                    <form action="{{ route('laporan.reject', $data->laporan_id) }}" method="POST"
+                      onsubmit="return confirm('Apakah yakin tidak menyetujui data ini?')">
+                      @csrf
+                      @method('POST')
+                      <button type="submit" class="btn btn-danger m-2"><i class="fas fa-times"></i></button>
+                    </form>
+
+                  </div>
                 </td>
               </tr>
             @endforeach

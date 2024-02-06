@@ -53,6 +53,8 @@ Route::resource('jenispelanggaran', JenisPelanggaranController::class)->middlewa
 Route::resource('pelanggaran', PelanggaranController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota']);
 
 Route::resource('laporan', LaporanController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
+Route::post('/laporan/{id}/verify', [LaporanController::class, 'verify'])->name('laporan.verify');
+Route::post('/laporan/{id}/reject', [LaporanController::class, 'reject'])->name('laporan.reject');
 
 Route::get('provinsi', function () {
     return '<h1>Welcome Bawaslu Provinsi</h1>';

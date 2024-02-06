@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
@@ -27,7 +29,8 @@ return new class extends Migration
             t_kecamatan.nama AS kecamatan_nama,
             t_kelurahan.nama AS kelurahan_nama,
             l.created_at AS laporan_created_at,
-            l.updated_at AS laporan_updated_at
+            l.updated_at AS laporan_updated_at,
+            v.status AS status
         FROM laporans l
         JOIN pelanggarans p ON l.pelanggaran_id = p.id
         JOIN jenis_pelanggarans jp ON p.jenis_pelanggaran_id = jp.id
@@ -35,8 +38,9 @@ return new class extends Migration
         LEFT JOIN t_provinsi ON l.provinsi_id = t_provinsi.id COLLATE utf8mb4_unicode_ci
         LEFT JOIN t_kota ON l.kota_id = t_kota.id COLLATE utf8mb4_unicode_ci
         LEFT JOIN t_kecamatan ON l.kecamatan_id = t_kecamatan.id COLLATE utf8mb4_unicode_ci
-        LEFT JOIN t_kelurahan ON l.kelurahan_id = t_kelurahan.id COLLATE utf8mb4_unicode_ci;
-       ");
+        LEFT JOIN t_kelurahan ON l.kelurahan_id = t_kelurahan.id COLLATE utf8mb4_unicode_ci
+        LEFT JOIN verifs v ON l.id = v.laporan_id
+        ");
     }
 
     /**
