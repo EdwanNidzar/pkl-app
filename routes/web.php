@@ -6,6 +6,7 @@ use App\Http\Controllers\ParpolController;
 use App\Http\Controllers\JenisPelanggaranController;
 use App\Http\Controllers\PelanggaranController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\SuratKerjaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,8 @@ Route::resource('pelanggaran', PelanggaranController::class)->middleware(['auth'
 Route::resource('laporan', LaporanController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
 Route::post('/laporan/{id}/verify', [LaporanController::class, 'verify'])->name('laporan.verify');
 Route::post('/laporan/{id}/reject', [LaporanController::class, 'reject'])->name('laporan.reject');
+
+Route::resource('suratkerja', SuratKerjaController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
 
 Route::get('provinsi', function () {
     return '<h1>Welcome Bawaslu Provinsi</h1>';
