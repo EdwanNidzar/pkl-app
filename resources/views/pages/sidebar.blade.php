@@ -30,27 +30,29 @@
           </a>
         </li>
         <li class="nav-header">TABLE</li>
-        <li class="nav-item">
-          <a href="{{ route('parpols.index') }}"
-            class="nav-link {{ request()->routeIs('parpols.index') ? 'active' : '' }}">
-            <i class="bi bi-list-ul me-2"></i>
-            <p>
-              Partai Politik
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('jenispelanggaran.index') }}"
-            class="nav-link {{ request()->routeIs('jenispelanggaran.index') ? 'active' : '' }}">
-            <i class="bi bi-list-ul me-2"></i>
-            <p>
-              Jenis Pelanggaran
-            </p>
-          </a>
-        </li>
-
-        @if (auth()->user()->hasRole('bawaslu-provinsi') ||
-                auth()->user()->hasRole('bawaslu-kota'))
+        @if (auth()->user()->hasRole('bawaslu-provinsi'))
+          <li class="nav-item">
+            <a href="{{ route('parpols.index') }}"
+              class="nav-link {{ request()->routeIs('parpols.index') ? 'active' : '' }}">
+              <i class="bi bi-list-ul me-2"></i>
+              <p>
+                Partai Politik
+              </p>
+            </a>
+          </li>
+        @endif
+        @if (auth()->user()->hasRole('bawaslu-provinsi'))
+          <li class="nav-item">
+            <a href="{{ route('jenispelanggaran.index') }}"
+              class="nav-link {{ request()->routeIs('jenispelanggaran.index') ? 'active' : '' }}">
+              <i class="bi bi-list-ul me-2"></i>
+              <p>
+                Jenis Pelanggaran
+              </p>
+            </a>
+          </li>
+        @endif
+        @if (auth()->user()->hasRole('bawaslu-provinsi') || auth()->user()->hasRole('bawaslu-kota'))
           <li class="nav-item">
             <a href="{{ route('pelanggaran.index') }}"
               class="nav-link {{ request()->routeIs('pelanggaran.index') ? 'active' : '' }}">

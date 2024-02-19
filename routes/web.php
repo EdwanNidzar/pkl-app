@@ -59,12 +59,5 @@ Route::post('/laporan/{id}/reject', [LaporanController::class, 'reject'])->name(
 
 Route::resource('suratkerja', SuratKerjaController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
 
-Route::get('provinsi', function () {
-    return '<h1>Welcome Bawaslu Provinsi</h1>';
-})->middleware(['auth','role:bawaslu-provinsi']);
-
-Route::get('kota', function () {
-    return '<h1>Welcome Bawaslu Kota</h1>';
-})->middleware(['auth','role:bawaslu-kota|bawaslu-provinsi']);
 
 require __DIR__.'/auth.php';

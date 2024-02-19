@@ -1,29 +1,59 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('pages.main')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
+<!-- isi bagian judul halaman -->
+@section('judul_halaman', 'BAWASLU | EDIT PROFILE')
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
+@section('content')
+  <section class="content">
+    <div class="container">
+      <div class="row justify-content-center align-items-center"> <!-- Add align-items-center class -->
+        <div class="col-md-8">
+          <div class="card">
+            <div class="card-header">Edit Profile</div>
+            <div class="card-body">
+              <!-- Display user's information -->
+              <form method="POST" action="{{ route('profile.update') }}">
+                @csrf
+                @method('PUT')
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
+                <!-- Display user's profile fields -->
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" name="name" id="name" class="form-control"
+                    value="{{ old('name', $user->name) }}">
                 </div>
+
+                <!-- Display panwascam fields -->
+                <div class="form-group">
+                  <label for="fullname">Full Name</label>
+                  <input type="text" name="fullname" id="fullname" class="form-control"
+                    value="{{ old('fullname', $user->panwascam->fullname ?? '') }}">
+                </div>
+
+                <div class="form-group">
+                  <label for="alamat">Address</label>
+                  <input type="text" name="alamat" id="alamat" class="form-control"
+                    value="{{ old('alamat', $user->panwascam->alamat ?? '') }}">
+                </div>
+
+                <div class="form-group">
+                  <label for="gender">Gender</label>
+                  <select name="gender" id="gender" class="form-control">
+                    <option selected disabled>Choose</option>
+                    <option value="male" {{ old('gender', $user->gender) == 'male' ? 'selected' : '' }}>Male</option>
+                    <option value="female" {{ old('gender', $user->gender) == 'female' ? 'selected' : '' }}>Female
+                    </option>
+                  </select>
+
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+              </form>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-</x-app-layout>
+
+  </section>
+@endsection
