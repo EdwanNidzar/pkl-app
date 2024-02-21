@@ -17,5 +17,7 @@ class Laporan extends Model
         'kota_id',
         'kecamatan_id',
         'kelurahan_id',
+        'latitude',
+        'longitude',
     ];
 }

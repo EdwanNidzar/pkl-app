@@ -178,3 +178,26 @@ script
     });
   });
 </script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  var map = L.map('mapid').setView([-3.316694, 114.590111], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+  }).addTo(map);
+
+  var marker;
+
+  function updateLatLng(lat, lng) {
+    document.getElementById('latitude').value = lat;
+    document.getElementById('longitude').value = lng;
+  }
+
+  map.on('click', function(e) {
+    if (marker) {
+      map.removeLayer(marker);
+    }
+    marker = L.marker(e.latlng).addTo(map);
+    updateLatLng(e.latlng.lat, e.latlng.lng);
+  });
+</script>

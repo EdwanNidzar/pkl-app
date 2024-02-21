@@ -109,6 +109,19 @@
                   </div>
                 </div>
 
+                <div class="form-row">
+                  <div class="col-md-6">
+                    <label for="latitude">Latitude</label>
+                    <input type="text" class="form-control" id="latitude" name="latitude">
+                  </div>
+                  <div class="col-md-6">
+                    <label for="longitude">Longitude</label>
+                    <input type="text" class="form-control" id="longitude" name="longitude">
+                  </div>
+                </div>
+
+                <div id="mapid" style="height: 400px;"></div>
+
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Simpan</button>
                   <a href="{{ route('laporan.index') }}" type="button" class="btn btn-secondary">Kembali</a>

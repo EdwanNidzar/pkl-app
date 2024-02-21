@@ -39,6 +39,8 @@ class LaporanController extends Controller
             'kota_id' => 'required',
             'kecamatan_id' => 'required',
             'kelurahan_id' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
         ],[
             'pelanggaran_id.required' => 'Pelanggaran harus diisi',
             'provinsi_id.required' => 'Provinsi harus diisi',
@@ -53,6 +55,8 @@ class LaporanController extends Controller
         $laporan->kota_id = $request->kota_id;
         $laporan->kecamatan_id = $request->kecamatan_id;
         $laporan->kelurahan_id = $request->kelurahan_id;
+        $laporan->latitude = $request->latitude;
+        $laporan->longitude = $request->longitude;
 
         $laporan->save();
         return redirect()->route('laporan.index')->with('success', 'Laporan berhasil ditambahkan');

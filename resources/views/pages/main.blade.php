@@ -34,6 +34,9 @@
 
   {{-- datatables --}}
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
+
+  {{-- letleafjs --}}
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
