@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Parpol;
 use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
+use Illuminate\Support\Facades\DB;
 
 class ParpolController extends Controller
 {
@@ -13,7 +14,7 @@ class ParpolController extends Controller
      */
     public function index()
     {
-        $parpols = Parpol::orderBy('nomor_partai', 'ASC')->get();
+        $parpols = DB::table('view_partai_politik')->get();
         return view('parpol.index', compact('parpols'));
     }
 

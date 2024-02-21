@@ -37,6 +37,7 @@
               <th>Nomor Partai</th>
               <th>Nama Partai</th>
               <th>Photo Partai</th>
+              <th>Jumlah Pelanggaran</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -47,14 +48,15 @@
                 <td>{{ $data->nomor_partai }}</td>
                 <td>{{ $data->nama_partai }}</td>
                 <td>
-                  <img src="{{ $data->photo }}" alt="Photo Partai" width="100" height="100">
+                  <img src="{{ $data->photo_partai }}" alt="Photo Partai" width="100" height="100">
                 </td>
+                <td>{{ $data->jumlah_pelanggaran }}</td>
                 <td>
-                  <a href="{{ route('parpols.show', $data->id) }}"> <button class="btn btn-light m-2"><i
+                  <a href="{{ route('parpols.show', $data->partai_id) }}"> <button class="btn btn-light m-2"><i
                         class="bi bi-eye-fill"></i></button></a>
-                  <a href="{{ route('parpols.edit', $data->id) }}"> <button class="btn btn-secondary m-2"><i
+                  <a href="{{ route('parpols.edit', $data->partai_id) }}"> <button class="btn btn-secondary m-2"><i
                         class="bi bi-pencil-square"></i></button></a>
-                  <form action="{{ route('parpols.destroy', $data->id) }}" method="POST"
+                  <form action="{{ route('parpols.destroy', $data->partai_id) }}" method="POST"
                     onsubmit="return confirm('Apakah yakin menghapus data ini?')" class="d-inline">
                     @csrf
                     @method('DELETE')
