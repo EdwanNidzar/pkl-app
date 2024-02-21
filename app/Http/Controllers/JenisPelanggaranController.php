@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\JenisPelanggaran;
+use Illuminate\Support\Facades\DB;
 
 class JenisPelanggaranController extends Controller
 {
@@ -12,7 +13,8 @@ class JenisPelanggaranController extends Controller
      */
     public function index()
     {
-        $jenispelanggaran = JenisPelanggaran::orderBy('id', 'ASC')->get();
+        // $jenispelanggaran = JenisPelanggaran::orderBy('id', 'ASC')->get();
+        $jenispelanggaran = DB::table('view_jenis_pelanggaran')->get();
         return view('jenispelanggaran.index', compact('jenispelanggaran'));
     }
 

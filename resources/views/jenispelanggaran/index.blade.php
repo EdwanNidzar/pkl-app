@@ -35,6 +35,7 @@
             <tr align="center">
               <th>NO</th>
               <th>Jenis Pelanggaran</th>
+              <th>Jumlah Pelanggaran</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -43,13 +44,14 @@
               <tr align="center">
                 <td>{{ $loop->iteration }}</td>
                 <td>{{ $data->jenis_pelanggaran }}</td>
+                <td>{{ $data->jumlah_pelanggaran }}</td>
 
                 <td>
-                  <a href="{{ route('jenispelanggaran.show', $data->id) }}"> <button class="btn btn-light m-2"><i
-                        class="bi bi-eye-fill"></i></button></a>
-                  <a href="{{ route('jenispelanggaran.edit', $data->id) }}"> <button class="btn btn-secondary m-2"><i
-                        class="bi bi-pencil-square"></i></button></a>
-                  <form action="{{ route('jenispelanggaran.destroy', $data->id) }}" method="POST"
+                  <a href="{{ route('jenispelanggaran.show', $data->id_jenis_pelanggaran) }}"> <button
+                      class="btn btn-light m-2"><i class="bi bi-eye-fill"></i></button></a>
+                  <a href="{{ route('jenispelanggaran.edit', $data->id_jenis_pelanggaran) }}"> <button
+                      class="btn btn-secondary m-2"><i class="bi bi-pencil-square"></i></button></a>
+                  <form action="{{ route('jenispelanggaran.destroy', $data->id_jenis_pelanggaran) }}" method="POST"
                     onsubmit="return confirm('Apakah yakin menghapus data ini?')" class="d-inline">
                     @csrf
                     @method('DELETE')
