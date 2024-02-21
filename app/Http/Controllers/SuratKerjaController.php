@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+<<<<<<< HEAD
 use App\Models\SuratKerja;
+=======
+>>>>>>> 254776148c5f914055532dff72930395d9cf657d
 
 class SuratKerjaController extends Controller
 {
@@ -20,6 +23,7 @@ class SuratKerjaController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
         $lastSuratKerja = SuratKerja::latest()->first();
         $suratKerjaNumber = $lastSuratKerja ? $lastSuratKerja->number + 1 : 1;
 
@@ -32,6 +36,9 @@ class SuratKerjaController extends Controller
         // Your code to create SuratKerja goes here
 
         return "<h1>$suratKerjaCode</h1>";
+=======
+        //
+>>>>>>> 254776148c5f914055532dff72930395d9cf657d
     }
 
     /**
