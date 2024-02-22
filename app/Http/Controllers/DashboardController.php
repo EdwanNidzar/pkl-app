@@ -3,15 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\SuratKerja;
-class SuratKerjaController extends Controller
+use Illuminate\Support\Facades\DB;
+
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $parpols = DB::table('view_partai_politik')->get();
+        $jenis_pelanggaran = DB::table('view_jenis_pelanggaran')->get();
+        return view('dashboard', compact('parpols', 'jenis_pelanggaran'));
     }
 
     /**
@@ -19,20 +22,7 @@ class SuratKerjaController extends Controller
      */
     public function create()
     {
-
-        $lastSuratKerja = SuratKerja::latest()->first();
-        $suratKerjaNumber = $lastSuratKerja ? $lastSuratKerja->number + 1 : 1;
-
-        // Get the current date
-        $currentDate = date('Ymd'); // This will give you the date in the format 'YYYYMMDD'. You can change the format as per your needs.
-
-        // Initialize the Surat Kerja code with the current date
-        $suratKerjaCode = 'SK-' . $currentDate . '-' . str_pad($suratKerjaNumber, 3, '0', STR_PAD_LEFT);
-
-        // Your code to create SuratKerja goes here
-
-        return "<h1>$suratKerjaCode</h1>";
-
+        //
     }
 
     /**

@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
@@ -19,6 +18,7 @@ return new class extends Migration
                 parpols.nama_partai as nama_partai,
                 pelanggarans.status_peserta_pemilu as status_peserta_pemilu,
                 pelanggarans.nama_bacaleg as nama_bacaleg,
+                pelanggarans.dapil as dapil,
                 pelanggarans.bukti as bukti,
                 pelanggarans.tanggal_input as tanggal_input,
                 pelanggarans.keterangan as keterangan,

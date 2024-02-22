@@ -12,18 +12,29 @@ return new class extends Migration
     {
         DB::statement("
         CREATE VIEW view_partai_politik AS
+        WITH view_partai_politik AS (
+            SELECT 
+                prt.id AS partai_id,
+                prt.nomor_partai AS nomor_partai, 
+                prt.nama_partai AS nama_partai, 
+                prt.photo AS photo_partaiusers, 
+                COUNT(plg.id) AS jumlah_pelanggaran
+            FROM 
+                parpols prt
+            LEFT JOIN 
+                pelanggarans plg ON prt.id = plg.partai_id
+            GROUP BY 
+                prt.id, prt.nomor_partai, prt.nama_partai, prt.photo
+        )
         SELECT 
-            prt.id AS partai_id,
-            prt.nomor_partai AS nomor_partai, 
-            prt.nama_partai AS nama_partai, 
-            prt.photo AS photo_partai, 
-            COUNT(plg.id) AS jumlah_pelanggaran
+            partai_id,
+            nomor_partai,
+            nama_partai,
+            photo_partaiusers,
+            jumlah_pelanggaran,
+            SUM(jumlah_pelanggaran) OVER() AS total_pelanggaran
         FROM 
-            parpols prt
-        LEFT JOIN 
-            pelanggarans plg ON prt.id = plg.partai_id
-        GROUP BY 
-            prt.id, prt.nomor_partai, prt.nama_partai, prt.photo;
+            view_partai_politik;
         ");
     }
 

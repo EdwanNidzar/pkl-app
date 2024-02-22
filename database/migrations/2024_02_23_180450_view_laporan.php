@@ -13,7 +13,7 @@ return new class extends Migration
     public function up(): void
     {
         DB::statement("
-        CREATE VIEW laporan_view AS
+        CREATE VIEW view_laporan AS
         SELECT
             l.id AS laporan_id,
             p.id AS pelanggaran_id,
@@ -28,6 +28,8 @@ return new class extends Migration
             t_kota.nama AS kota_nama,
             t_kecamatan.nama AS kecamatan_nama,
             t_kelurahan.nama AS kelurahan_nama,
+            l.latitude,
+            l.longitude,
             l.created_at AS laporan_created_at,
             l.updated_at AS laporan_updated_at,
             v.status AS status
@@ -48,6 +50,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement('DROP VIEW laporan_view');
+        DB::statement('DROP VIEW view_laporan');
     }
 };

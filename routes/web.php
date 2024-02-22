@@ -7,6 +7,7 @@ use App\Http\Controllers\JenisPelanggaranController;
 use App\Http\Controllers\PelanggaranController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\SuratKerjaController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,6 +42,8 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::resource('dashboard', DashboardController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -58,6 +61,5 @@ Route::post('/laporan/{id}/verify', [LaporanController::class, 'verify'])->name(
 Route::post('/laporan/{id}/reject', [LaporanController::class, 'reject'])->name('laporan.reject');
 
 Route::resource('suratkerja', SuratKerjaController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
-
 
 require __DIR__.'/auth.php';
