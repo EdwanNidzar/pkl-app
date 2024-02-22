@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
-  <a href="{{ route('dashboard') }}" class="brand-link">
+  <a href="{{ route('dashboard.index') }}" class="brand-link">
     <img src="{{ asset('dist/img/AdminLTELogo.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
       style="opacity: .8">
     <span class="brand-text font-weight-light">APS APK</span>
@@ -14,7 +14,7 @@
         <img src="{{ asset('dist/img/avatar.png') }}" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="#" class="d-block">EDWAN</a>
+        <a href="{{ route('profile.edit') }}" class="d-block">{{ auth()->user()->name }}</a>
       </div>
     </div>
 
@@ -22,7 +22,8 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <li class="nav-item">
-          <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+          <a href="{{ route('dashboard.index') }}"
+            class="nav-link {{ request()->routeIs('dashboard.index') ? 'active' : '' }}">
             <i class="bi bi-grid-1x2-fill me-2"></i>
             <p>
               Dashboard

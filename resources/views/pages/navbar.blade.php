@@ -6,7 +6,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('dashboard') }}" class="nav-link">Home</a>
+        <a href="{{ route('dashboard.index') }}" class="nav-link">Home</a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
         <a href="{{ route('parpols.index') }}" class="nav-link">Partai Politik</a>
@@ -32,7 +32,7 @@
         <li class="nav-item dropdown">
           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false" v-pre>
-            {{ Auth::user()->name }}
+            {{ Auth::user()->username }}
           </a>
 
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

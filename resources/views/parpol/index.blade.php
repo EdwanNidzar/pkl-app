@@ -13,7 +13,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item active"><a href="{{ route('dashboard') }}">HOME</a></li>
+            <li class="breadcrumb-item active"><a href="{{ route('dashboard.index') }}">HOME</a></li>
             <li class="breadcrumb-item">Partai Politik</li>
           </ol>
         </div>
@@ -48,7 +48,7 @@
                 <td>{{ $data->nomor_partai }}</td>
                 <td>{{ $data->nama_partai }}</td>
                 <td>
-                  <img src="{{ $data->photo_partai }}" alt="Photo Partai" width="100" height="100">
+                  <img src="{{ $data->photo_partaiusers }}" alt="Photo Partai" width="100" height="100">
                 </td>
                 <td>{{ $data->jumlah_pelanggaran }}</td>
                 <td>
