@@ -59,6 +59,7 @@ class PelanggaranController extends Controller
             'nama_partai' => 'required',
             'status' => 'required',
             'nama_bacaleg' => 'required',
+            'dapil' => 'required',
             'bukti' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',    
             'tgl' => 'required',
             'keterangan' => 'required',
@@ -66,7 +67,8 @@ class PelanggaranController extends Controller
             'jenis_pelanggaran.required' => 'Jenis Pelanggaran tidak boleh kosong',
             'nama_partai.required' => 'Nama Partai tidak boleh kosong',
             'status.required' => 'Status tidak boleh kosong',
-            '   .required' => 'Nama Bacaleg tidak boleh kosong',
+            'nama_bacaleg.required' => 'Nama Bacaleg tidak boleh kosong',
+            'dapi.required' => 'Dapil tidak boleh kosong',
             'bukti.required' => 'Bukti tidak boleh kosong',
             'bukti.image' => 'Bukti harus berupa gambar',
             'bukti.mimes' => 'Bukti harus berformat jpeg, png, jpg, gif',
@@ -80,6 +82,7 @@ class PelanggaranController extends Controller
         $pelanggaran->partai_id = $request->nama_partai;
         $pelanggaran->status_peserta_pemilu = $request->status;
         $pelanggaran->nama_bacaleg = $request->nama_bacaleg;
+        $pelanggaran->dapil = $request->dapil;
         
         $upload = $this->upload($request);
         $pelanggaran->bukti = $upload->getSecurePath();
@@ -125,6 +128,7 @@ class PelanggaranController extends Controller
             'nama_partai' => 'required',
             'status' => 'required',
             'nama_bacaleg' => 'required',
+            'dapil' => 'required',
             'bukti' => 'image|mimes:jpeg,png,jpg,gif|max:2048',    
             'tgl' => 'required',
             'keterangan' => 'required',
@@ -133,6 +137,7 @@ class PelanggaranController extends Controller
             'nama_partai.required' => 'Nama Partai tidak boleh kosong',
             'status.required' => 'Status tidak boleh kosong',
             'nama_bacaleg.required' => 'Nama Bacaleg tidak boleh kosong',
+            'dapi.required' => 'Dapil tidak boleh kosong',
             'bukti.image' => 'Bukti harus berupa gambar',
             'bukti.mimes' => 'Bukti harus berformat jpeg, png, jpg, gif',
             'bukti.max' => 'Bukti maksimal berukuran 2MB',
@@ -146,6 +151,7 @@ class PelanggaranController extends Controller
         $pelanggaran->partai_id = $request->nama_partai;
         $pelanggaran->status_peserta_pemilu = $request->status;
         $pelanggaran->nama_bacaleg = $request->nama_bacaleg;
+        $pelanggaran->dapil = $request->dapil;
 
         if ($request->hasFile('bukti')) {
             $upload = $this->upload($request);

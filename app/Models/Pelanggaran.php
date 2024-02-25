@@ -16,6 +16,7 @@ class Pelanggaran extends Model
         'partai_id',
         'status_peserta_pemilu',
         'nama_bacaleg',
+        'dapil',
         'bukti',
         'tanggal_input',
         'keterangan',

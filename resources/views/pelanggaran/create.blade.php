@@ -68,15 +68,15 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-4">
                     <div class="form-group">
                       <label for="status">Status Peserta Pemilu</label>
                       <select name="status" id="status" class="form-control">
                         <option value="#" disabled selected>.: PILIH STATUS PESERTA PEMILU :.</option>
-                        <option value="DPR">DPR</option>
-                        <option value="DPRD">DPRD</option>
-                        <option value="DPR RI">DPR RI</option>
-                        <option value="DPD">DPD</option>
+                        <option value="DPD RI">DPD RI</option>
+                        <option value="DPR DI">DPR RI</option>
+                        <option value="DPRD Provinsi">DPRD Provinsi</option>
+                        <option value="DPRD Kota">DPRD Kota</option>
                       </select>
                       @error('status')
                         <div class="alert alert-danger mt-2">
@@ -85,7 +85,20 @@
                       @enderror
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="dapil">Dapil</label>
+                      <select name="dapil" id="dapil" class="form-control">
+                        <option value="#" disabled selected>.: PILIH DAPIL :.</option>
+                      </select>
+                      @error('dapil')
+                        <div class="alert alert-danger mt-2">
+                          {{ $message }}
+                        </div>
+                      @enderror
+                    </div>
+                  </div>
+                  <div class="col-4">
                     <div class="form-group">
                       <label for="nama_bacaleg">Nama Bacaleg</label>
                       <input type="text" class="form-control" name="nama_bacaleg" id="nama_bacaleg"
