@@ -40,12 +40,12 @@
             <a class="dropdown-item" href="{{ route('profile.edit') }}">Update Profile</a>
             <a class="dropdown-item" href="{{ route('logout') }}"
               onclick="event.preventDefault();
-            this.closest('form').submit();">
+                      this.closest('form').submit();">
               Logout
             </a>
-            </form>
           </div>
         </li>
-      </ul>
-    </nav>
-    <!-- /.navbar -->
+      @endguest
+    </ul>
+  </nav>
+  <!-- /.navbar -->

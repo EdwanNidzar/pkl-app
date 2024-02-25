@@ -60,6 +60,6 @@ Route::resource('laporan', LaporanController::class)->middleware(['auth','role:b
 Route::post('/laporan/{id}/verify', [LaporanController::class, 'verify'])->name('laporan.verify');
 Route::post('/laporan/{id}/reject', [LaporanController::class, 'reject'])->name('laporan.reject');
 
-//Route::resource('suratkerja', SuratKerjaController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
+Route::resource('suratkerja', SuratKerjaController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
 
 require __DIR__.'/auth.php';
