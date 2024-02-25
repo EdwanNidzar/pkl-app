@@ -16,27 +16,36 @@
 
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
-      <!-- User Dropdown Menu -->
-      <li class="nav-item dropdown">
-        <a class="nav-link" data-toggle="dropdown" href="#">
-          <i class="far fa-user"></i>
-          <span>{{ Auth::user()->username }}</span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">User Menu</span>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="{{ route('profile.edit') }}">Update Profile</a>
-          <!-- Logout Button -->
-          <form method="POST" action="{{ route('logout') }}">
-            @csrf
+      <!-- Authentication Links -->
+      @guest
+        @if (Route::has('login'))
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+          </li>
+        @endif
+
+        @if (Route::has('register'))
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+          </li>
+        @endif
+      @else
+        <li class="nav-item dropdown">
+          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->name }}
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('profile.edit') }}">Update Profile</a>
             <a class="dropdown-item" href="{{ route('logout') }}"
               onclick="event.preventDefault();
             this.closest('form').submit();">
               Logout
             </a>
-          </form>
-        </div>
-      </li>
-    </ul>
-  </nav>
-  <!-- /.navbar -->
+            </form>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <!-- /.navbar -->
