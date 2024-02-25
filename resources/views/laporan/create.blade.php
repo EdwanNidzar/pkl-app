@@ -120,7 +120,9 @@
                   </div>
                 </div>
 
+                <br>
                 <div id="mapid" style="height: 400px;"></div>
+                <br>
 
                 <div class="card-footer">
                   <button type="submit" class="btn btn-primary">Simpan</button>

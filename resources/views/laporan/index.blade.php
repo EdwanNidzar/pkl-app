@@ -81,19 +81,20 @@
                       @method('DELETE')
                       <button type="submit" class="btn btn-danger m-2"><i class="bi bi-trash-fill"></i></button>
                     </form>
-                    <form action="{{ route('laporan.verify', $data->laporan_id) }}" method="POST"
-                      onsubmit="return confirm('Apakah yakin menyetujui data ini?')">
-                      @csrf
-                      @method('POST')
-                      <button type="submit" class="btn btn-primary m-2"><i class="fas fa-check"></i></button>
-                    </form>
-                    <form action="{{ route('laporan.reject', $data->laporan_id) }}" method="POST"
-                      onsubmit="return confirm('Apakah yakin tidak menyetujui data ini?')">
-                      @csrf
-                      @method('POST')
-                      <button type="submit" class="btn btn-danger m-2"><i class="fas fa-times"></i></button>
-                    </form>
-
+                    @if ($data->status == 0)
+                      <form action="{{ route('laporan.verify', $data->laporan_id) }}" method="POST"
+                        onsubmit="return confirm('Apakah yakin menyetujui data ini?')">
+                        @csrf
+                        @method('POST')
+                        <button type="submit" class="btn btn-primary m-2"><i class="fas fa-check"></i></button>
+                      </form>
+                      <form action="{{ route('laporan.reject', $data->laporan_id) }}" method="POST"
+                        onsubmit="return confirm('Apakah yakin tidak menyetujui data ini?')">
+                        @csrf
+                        @method('POST')
+                        <button type="submit" class="btn btn-danger m-2"><i class="fas fa-times"></i></button>
+                      </form>
+                    @endif
                   </div>
                 </td>
               </tr>

@@ -15,7 +15,7 @@ class LaporanController extends Controller
      */
     public function index()
     {
-        $view_laporans = DB::table('laporan_view')->get();
+        $view_laporans = DB::table('view_laporan')->get();
         return view('laporan.index', compact('view_laporans'));
     }
 
@@ -47,6 +47,8 @@ class LaporanController extends Controller
             'kota_id.required' => 'Kota harus diisi',
             'kecamatan_id.required' => 'Kecamatan harus diisi',
             'kelurahan_id.required' => 'Kelurahan harus diisi',
+            'latitude.required' => 'Latitude harus diisi',
+            'longitude.required' => 'Longitude harus diisi',
         ]);
 
         $laporan = new Laporan();
