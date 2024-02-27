@@ -1,4 +1,3 @@
-script
 <script>
   $('#parpols').DataTable();
 </script>
@@ -13,6 +12,10 @@ script
 
 <script>
   $('#laporan').DataTable();
+</script>
+
+<script>
+  $('#users').DataTable();
 </script>
 
 

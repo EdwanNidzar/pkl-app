@@ -8,6 +8,7 @@ use App\Http\Controllers\PelanggaranController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\SuratKerjaController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,5 +62,10 @@ Route::post('/laporan/{id}/verify', [LaporanController::class, 'verify'])->name(
 Route::post('/laporan/{id}/reject', [LaporanController::class, 'reject'])->name('laporan.reject');
 
 Route::resource('suratkerja', SuratKerjaController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
+
+Route::resource('users', UsersController::class)->middleware(['auth','role:bawaslu-provinsi']);
+Route::patch('/users/{id}/makeProvinsi', [UsersController::class, 'makeProvinsi'])->name('users.makeProvinsi');
+Route::patch('/users/{id}/makeKota', [UsersController::class, 'makeKota'])->name('users.makeKota');
+Route::patch('/users/{id}/makePanwascam', [UsersController::class, 'makePanwascam'])->name('users.makePanwascam');
 
 require __DIR__.'/auth.php';
