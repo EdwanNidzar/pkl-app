@@ -100,9 +100,8 @@ class PelanggaranController extends Controller
      */
     public function show(string $id)
     {
-        $data = Pelanggaran::where('id', $id)->first();
-        $view_pelanggarans = DB::table('view_pelanggaran')->get();
-        return view('pelanggaran.show', compact('data', 'view_pelanggarans'));
+        $view_pelanggarans = DB::table('view_pelanggaran')->where('pelanggaran_id', $id)->first();
+        return view('pelanggaran.show', compact('view_pelanggarans'));
     }
 
     /**

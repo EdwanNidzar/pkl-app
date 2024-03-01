@@ -69,15 +69,16 @@
                 </div>
 
                 <div class="row">
-                  <div class="col-6">
+                  <div class="col-4">
                     <div class="form-group">
                       <label for="status">Status Peserta Pemilu</label>
                       <select name="status" id="status" class="form-control">
-                        <option value="#" disabled>.: PILIH STATUS PESERTA PEMILU :.</option>
-                        <option value="DPR" {{ $data->status == 'DPR' ? 'selected' : '' }}>DPR</option>
-                        <option value="DPRD" {{ $data->status == 'DPRD' ? 'selected' : '' }}>DPRD</option>
-                        <option value="DPR RI" {{ $data->status == 'DPR RI' ? 'selected' : '' }}>DPR RI</option>
-                        <option value="DPD" {{ $data->status == 'DPD' ? 'selected' : '' }}>DPD</option>
+                        <option value="#" disabled selected>.: PILIH STATUS PESERTA PEMILU :.</option>
+                        <option value="DPD RI" {{ $data->status == 'DPD RI' ? 'selected' : '' }}>DPD RI</option>
+                        <option value="DPR DI" {{ $data->status == 'DPR DI' ? 'selected' : '' }}>DPR RI</option>
+                        <option value="DPRD Provinsi" {{ $data->status == 'DPRD Provinsi' ? 'selected' : '' }}>DPRD
+                          Provinsi</option>
+                        <option value="DPRD Kota" {{ $data->status == 'DPRD Kota' ? 'selected' : '' }}>DPRD Kota</option>
                       </select>
                       @error('status')
                         <div class="alert alert-danger mt-2">
@@ -86,7 +87,20 @@
                       @enderror
                     </div>
                   </div>
-                  <div class="col-6">
+                  <div class="col-4">
+                    <div class="form-group">
+                      <label for="dapil">Dapil</label>
+                      <select name="dapil" id="dapil" class="form-control">
+                        <option value="#" disabled selected>.: PILIH DAPIL :.</option>
+                      </select>
+                      @error('dapil')
+                        <div class="alert alert-danger mt-2">
+                          {{ $message }}
+                        </div>
+                      @enderror
+                    </div>
+                  </div>
+                  <div class="col-4">
                     <div class="form-group">
                       <label for="nama_bacaleg">Nama Bacaleg</label>
                       <input type="text" class="form-control" name="nama_bacaleg" id="nama_bacaleg"

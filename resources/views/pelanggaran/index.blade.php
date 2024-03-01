@@ -49,6 +49,7 @@
               <th>Nama Partai</th>
               <th>Status Peserta Pemilu</th>
               <th>Nama Peserta Pemilu</th>
+              <th>Dapil</th>
               <th>Bukti Pendukung</th>
               <th>Tanggal</th>
               <th>Keterangan</th>
@@ -63,6 +64,7 @@
                 <td>{{ $data->nama_partai }}</td>
                 <td>{{ $data->status_peserta_pemilu }}</td>
                 <td>{{ $data->nama_bacaleg }}</td>
+                <td>{{ $data->dapil }}</td>
                 <td>
                   <img src="{{ $data->bukti }}" alt="Bukti Pendukung" width="25%" height="25%">
                 </td>
