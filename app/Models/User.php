@@ -25,6 +25,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'username',
         'email',
         'password',
+        'photo',
+        'jenis_kelamin',
+        'alamat',
     ];
 
     /**
@@ -47,8 +50,4 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
-    public function panwascam()
-    {
-        return $this->hasOne(Panwascam::class);
-    }
 }
