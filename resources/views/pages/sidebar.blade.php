@@ -69,7 +69,9 @@
           </li>
         @endif
 
-        @if (auth()->user()->hasRole('bawaslu-provinsi') || auth()->user()->hasRole('bawaslu-kota'))
+        @if (auth()->user()->hasRole('bawaslu-provinsi') ||
+                auth()->user()->hasRole('bawaslu-kota') ||
+                auth()->user()->hasRole('panwascam'))
           <li class="nav-item">
             <a href="{{ route('pelanggaran.index') }}"
               class="nav-link {{ request()->routeIs('pelanggaran.index') ? 'active' : '' }}">
@@ -106,6 +108,15 @@
             </a>
           </li>
         @endif
+
+        <li class="nav-item">
+          <a href="{{ route('maps') }}" class="nav-link {{ request()->routeIs('maps') ? 'active' : '' }}">
+            <i class="bi bi-geo-alt-fill me-2"></i>
+            <p>
+              Liat Pelanggaran di Peta
+            </p>
+          </a>
+        </li>
 
       </ul>
     </nav>

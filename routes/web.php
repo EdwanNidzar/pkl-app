@@ -39,10 +39,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
-
 Route::resource('dashboard', DashboardController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
 
 Route::middleware('auth')->group(function () {
@@ -55,11 +51,18 @@ Route::resource('parpols', ParpolController::class)->middleware(['auth','role:ba
 
 Route::resource('jenispelanggaran', JenisPelanggaranController::class)->middleware(['auth','role:bawaslu-provinsi']);
 
-Route::resource('pelanggaran', PelanggaranController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota']);
+Route::resource('pelanggaran', PelanggaranController::class);
 
-Route::resource('laporan', LaporanController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
-Route::post('/laporan/{id}/verify', [LaporanController::class, 'verify'])->name('laporan.verify');
-Route::post('/laporan/{id}/reject', [LaporanController::class, 'reject'])->name('laporan.reject');
+Route::resource('laporan', LaporanController::class)
+    ->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
+Route::post('/laporan/{id}/verify', [LaporanController::class, 'verify'])
+    ->name('laporan.verify')
+    ->middleware(['auth', 'role:bawaslu-provinsi']);
+Route::post('/laporan/{id}/reject', [LaporanController::class, 'reject'])
+    ->name('laporan.reject')
+    ->middleware(['auth', 'role:bawaslu-provinsi']);
+Route::get('/maps', [LaporanController::class, 'maps'])
+    ->name('maps');
 
 Route::resource('suratkerja', SuratKerjaController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
 

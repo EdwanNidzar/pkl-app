@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
 
 return new class extends Migration
@@ -24,6 +22,7 @@ return new class extends Migration
             p.bukti,
             p.tanggal_input,
             p.keterangan,
+            p.dapil as dapil,
             t_provinsi.nama AS provinsi_nama,
             t_kota.nama AS kota_nama,
             t_kecamatan.nama AS kecamatan_nama,

@@ -24,7 +24,7 @@ class UsersController extends Controller
     public function makeKota(Request $request, $userId)
     {
         $user = User::findOrFail($userId); 
-        $user->syncRoles('bawaslu-ota');
+        $user->syncRoles('bawaslu-kota');
         return redirect()->back()->with('success', 'User role updated successfully.');
     }
 

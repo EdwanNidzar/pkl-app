@@ -41,13 +41,13 @@
 
       <div class="card-body">
         <a href="{{ route('laporan.create') }}" type="button" class="btn btn-primary mb-3">Tambah Data</a>
-        <table id="laporan" class="table table-bordered  table-striped mb-3">
+        <table id="laporan" class="table table-bordered table-striped mb-3">
           <thead>
             <tr align="center">
               <th>NO</th>
               <th>Nama Peserta Pemilu</th>
-              <th>Nama Partai</th>
               <th>Jenis Pelanggaran</th>
+              <th>Nama Partai</th>
               <th>Status</th>
               <th>Action</th>
             </tr>
@@ -73,28 +73,38 @@
                   <div class="btn-group" role="group" aria-label="Basic example">
                     <a href="{{ route('laporan.show', $data->laporan_id) }}" class="btn btn-light m-2"><i
                         class="bi bi-eye-fill"></i></a>
-                    <a href="{{ route('laporan.edit', $data->laporan_id) }}" class="btn btn-secondary m-2"><i
-                        class="bi bi-pencil-square"></i></a>
-                    <form action="{{ route('laporan.destroy', $data->laporan_id) }}" method="POST"
-                      onsubmit="return confirm('Apakah yakin menghapus data ini?')" class="d-inline">
-                      @csrf
-                      @method('DELETE')
-                      <button type="submit" class="btn btn-danger m-2"><i class="bi bi-trash-fill"></i></button>
-                    </form>
-                    @if ($data->status == 0)
-                      <form action="{{ route('laporan.verify', $data->laporan_id) }}" method="POST"
-                        onsubmit="return confirm('Apakah yakin menyetujui data ini?')">
-                        @csrf
-                        @method('POST')
-                        <button type="submit" class="btn btn-primary m-2"><i class="fas fa-check"></i></button>
-                      </form>
-                      <form action="{{ route('laporan.reject', $data->laporan_id) }}" method="POST"
-                        onsubmit="return confirm('Apakah yakin tidak menyetujui data ini?')">
-                        @csrf
-                        @method('POST')
-                        <button type="submit" class="btn btn-danger m-2"><i class="fas fa-times"></i></button>
-                      </form>
+                    @if (auth()->user()->hasRole('bawaslu-kota'))
+                      @if ($data->status == 0)
+                        <form action="{{ route('laporan.verify', $data->laporan_id) }}" method="POST"
+                          onsubmit="return confirm('Apakah yakin menyetujui data ini?')">
+                          @csrf
+                          @method('POST')
+                          <button type="submit" class="btn btn-primary m-2"><i class="fas fa-check"></i></button>
+                        </form>
+                        <form action="{{ route('laporan.reject', $data->laporan_id) }}" method="POST"
+                          onsubmit="return confirm('Apakah yakin tidak menyetujui data ini?')">
+                          @csrf
+                          @method('POST')
+                          <button type="submit" class="btn btn-danger m-2"><i class="fas fa-times"></i></button>
+                        </form>
+                      @endif
                     @endif
+
+                    @if ($data->status == 0)
+                      @if (auth()->user()->hasRole('panwascam'))
+                        <a href="{{ route('laporan.edit', $data->laporan_id) }}" class="btn btn-secondary m-2"><i
+                            class="bi bi-pencil-square"></i></a>
+                      @endif
+                      @if (auth()->user()->hasRole('bawaslu-kota') || auth()->user()->hasRole('panwascam'))
+                        <form action="{{ route('laporan.destroy', $data->laporan_id) }}" method="POST"
+                          onsubmit="return confirm('Apakah yakin menghapus data ini?')" class="d-inline">
+                          @csrf
+                          @method('DELETE')
+                          <button type="submit" class="btn btn-danger m-2"><i class="bi bi-trash-fill"></i></button>
+                        </form>
+                      @endif
+                    @endif
+
                   </div>
                 </td>
               </tr>

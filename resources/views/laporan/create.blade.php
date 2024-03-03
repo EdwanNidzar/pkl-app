@@ -112,11 +112,11 @@
                 <div class="form-row">
                   <div class="col-md-6">
                     <label for="latitude">Latitude</label>
-                    <input type="text" class="form-control" id="latitude" name="latitude">
+                    <input type="text" class="form-control" id="latitude" name="latitude" readonly>
                   </div>
                   <div class="col-md-6">
                     <label for="longitude">Longitude</label>
-                    <input type="text" class="form-control" id="longitude" name="longitude">
+                    <input type="text" class="form-control" id="longitude" name="longitude" readonly>
                   </div>
                 </div>
 

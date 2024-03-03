@@ -70,7 +70,7 @@ class LaporanController extends Controller
     public function show(string $id)
     {
         $laporan = Laporan::findOrFail($id);
-        $data = DB::table('laporan_view')->get()->where('laporan_id', $id)->first();
+        $data = DB::table('view_laporan')->get()->where('laporan_id', $id)->first();
         return view('laporan.show', compact('laporan','data'));
     }
 
@@ -79,7 +79,9 @@ class LaporanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $laporan = Laporan::findOrFail($id);
+        $data = DB::table('view_pelanggaran')->get();
+        return view('laporan.edit', compact('data', 'laporan'));
     }
 
     /**
@@ -87,7 +89,37 @@ class LaporanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $laporan = Laporan::findOrFail($id);
+
+        $request->validate([
+            'pelanggaran_id' => 'required',
+            'provinsi_id' => 'required',
+            'kota_id' => 'required',
+            'kecamatan_id' => 'required',
+            'kelurahan_id' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+        ],[
+            'pelanggaran_id.required' => 'Pelanggaran harus diisi',
+            'provinsi_id.required' => 'Provinsi harus diisi',
+            'kota_id.required' => 'Kota harus diisi',
+            'kecamatan_id.required' => 'Kecamatan harus diisi',
+            'kelurahan_id.required' => 'Kelurahan harus diisi',
+            'latitude.required' => 'Latitude harus diisi',
+            'longitude.required' => 'Longitude harus diisi',
+        ]);
+
+        
+        $laporan->pelanggaran_id = $request->pelanggaran_id;
+        $laporan->provinsi_id = $request->provinsi_id;
+        $laporan->kota_id = $request->kota_id;
+        $laporan->kecamatan_id = $request->kecamatan_id;
+        $laporan->kelurahan_id = $request->kelurahan_id;
+        $laporan->latitude = $request->latitude;
+        $laporan->longitude = $request->longitude;
+
+        $laporan->update();
+        return redirect()->route('laporan.index')->with('success', 'Laporan berhasil diubah');
     }
 
     /**
@@ -142,4 +174,13 @@ class LaporanController extends Controller
         return redirect()->route('laporan.index')->with('success', 'Status berhasil disimpan atau diperbarui');
     
      }
+
+    /**
+     * Show Maps
+     */
+    public function maps()
+    {
+        $view_laporans = DB::table('view_laporan')->get();
+        return view('laporan.maps', compact('view_laporans'));
+    }
 }
