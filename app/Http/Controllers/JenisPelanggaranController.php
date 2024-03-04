@@ -91,4 +91,22 @@ class JenisPelanggaranController extends Controller
 
         return redirect()->route('jenispelanggaran.index');
     }
+
+    /**
+     * Retrieve violations related to a specific political party.
+     */
+    public function pelanggaran($nama)
+    {
+        // Get the type of violation based on its name
+        $jenispelanggaran = JenisPelanggaran::where('jenis_pelanggaran', $nama)->first();
+        
+        // Get violations related to this type of violation
+        $view_pelanggarans = DB::table('view_pelanggaran')
+                            ->where('jenis_pelanggaran', $nama)
+                            ->get();
+        
+        // Return view with data
+        return view('pelanggaran.index', compact('jenispelanggaran', 'view_pelanggarans'));
+    }
+
 }

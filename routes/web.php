@@ -48,8 +48,10 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('parpols', ParpolController::class)->middleware(['auth','role:bawaslu-provinsi']);
+Route::get('/parpols/{nama}/pelanggaran', [ParpolController::class, 'pelanggaran'])->name('parpols.pelanggaran');
 
 Route::resource('jenispelanggaran', JenisPelanggaranController::class)->middleware(['auth','role:bawaslu-provinsi']);
+Route::get('/jenispelanggaran/{nama}/pelanggaran', [JenisPelanggaranController::class, 'pelanggaran'])->name('jenispelanggaran.pelanggaran');
 
 Route::resource('pelanggaran', PelanggaranController::class);
 

@@ -47,8 +47,6 @@
                 <td>{{ $data->jumlah_pelanggaran }}</td>
 
                 <td>
-                  <a href="{{ route('jenispelanggaran.show', $data->id_jenis_pelanggaran) }}"> <button
-                      class="btn btn-light m-2"><i class="bi bi-eye-fill"></i></button></a>
                   <a href="{{ route('jenispelanggaran.edit', $data->id_jenis_pelanggaran) }}"> <button
                       class="btn btn-secondary m-2"><i class="bi bi-pencil-square"></i></button></a>
                   <form action="{{ route('jenispelanggaran.destroy', $data->id_jenis_pelanggaran) }}" method="POST"
@@ -57,6 +55,10 @@
                     @method('DELETE')
                     <button class="btn btn-danger m-2"><i class="bi bi-trash-fill"></i></button>
                   </form>
+                  <a href="{{ route('jenispelanggaran.show', $data->id_jenis_pelanggaran) }}"> <button
+                      class="btn btn-light m-2"><i class="bi bi-eye-fill"></i></button></a>
+                  <a href="{{ route('jenispelanggaran.pelanggaran', $data->jenis_pelanggaran) }}"> <button
+                      class="btn btn-info m-2"><i class="bi bi-eye-fill"></i></button></a>
                 </td>
               </tr>
             @endforeach

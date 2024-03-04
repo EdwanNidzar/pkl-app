@@ -133,4 +133,22 @@ class ParpolController extends Controller
         $parpol->delete();
         return redirect()->route('parpols.index');
     }
+
+    /**
+     * Retrieve violations related to a specific political party.
+     */
+    public function pelanggaran($nama)
+    {
+        // Get the political party
+        $parpol = Parpol::where('nama_partai', $nama)->first();
+        
+        // Get violations related to this political party
+        $view_pelanggarans = DB::table('view_pelanggaran')
+                        ->where('nama_partai', $nama)
+                        ->get();
+        
+        // Return view with data
+        return view('pelanggaran.index', compact('parpol', 'view_pelanggarans'));
+    }
+
 }
