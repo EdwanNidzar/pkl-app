@@ -9,6 +9,7 @@ use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\SuratKerjaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,9 +50,13 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('parpols', ParpolController::class)->middleware(['auth','role:bawaslu-provinsi']);
 Route::get('/parpols/{nama}/pelanggaran', [ParpolController::class, 'pelanggaran'])->name('parpols.pelanggaran');
+Route::get('/cetakParpols', [PDFController::class, 'cetakParpols'])->name('cetakParpols');
+Route::get('/cetakParpolsById/{id}', [PDFController::class, 'cetakParpolsById'])->name('cetakParpolsById');
 
 Route::resource('jenispelanggaran', JenisPelanggaranController::class)->middleware(['auth','role:bawaslu-provinsi']);
 Route::get('/jenispelanggaran/{nama}/pelanggaran', [JenisPelanggaranController::class, 'pelanggaran'])->name('jenispelanggaran.pelanggaran');
+Route::get('/cetakJenisPelanggaran', [PDFController::class, 'cetakJenisPelanggaran'])->name('cetakJenisPelanggaran');
+Route::get('/cetakJenisPelanggaranById/{id}', [PDFController::class, 'cetakJenisPelanggaranById'])->name('cetakJenisPelanggaranById');
 
 Route::resource('pelanggaran', PelanggaranController::class);
 
