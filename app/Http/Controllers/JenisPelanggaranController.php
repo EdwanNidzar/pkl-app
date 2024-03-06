@@ -95,14 +95,14 @@ class JenisPelanggaranController extends Controller
     /**
      * Retrieve violations related to a specific political party.
      */
-    public function pelanggaran($nama)
+    public function pelanggaran($id)
     {
         // Get the type of violation based on its name
-        $jenispelanggaran = JenisPelanggaran::where('jenis_pelanggaran', $nama)->first();
+        $jenispelanggaran = JenisPelanggaran::where('jenis_pelanggaran', $id)->first();
         
         // Get violations related to this type of violation
         $view_pelanggarans = DB::table('view_pelanggaran')
-                            ->where('jenis_pelanggaran', $nama)
+                            ->where('jenis_pelanggaran_id', $id)
                             ->get();
         
         // Return view with data

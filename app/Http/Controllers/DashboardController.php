@@ -14,7 +14,17 @@ class DashboardController extends Controller
     {
         $parpols = DB::table('view_partai_politik')->get();
         $jenis_pelanggaran = DB::table('view_jenis_pelanggaran')->get();
-        return view('dashboard', compact('parpols', 'jenis_pelanggaran'));
+        $view_laporans = DB::table('view_laporan')->get();
+        return view('dashboard', compact('parpols', 'jenis_pelanggaran', 'view_laporans'));
+    }
+
+    /**
+     * Show Maps
+     */
+    public function maps()
+    {
+        $view_laporans = DB::table('view_laporan')->get();
+        return view('laporan.maps', compact('view_laporans'));
     }
 
     /**

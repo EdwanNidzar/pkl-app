@@ -64,7 +64,7 @@
                   </form>
                   <a href="{{ route('parpols.show', $data->partai_id) }}"> <button class="btn btn-light m-2"><i
                         class="bi bi-eye-fill"></i></button></a>
-                  <a href="{{ route('parpols.pelanggaran', $data->nama_partai) }}"> <button class="btn btn-info m-2"><i
+                  <a href="{{ route('parpols.pelanggaran', $data->partai_id) }}"> <button class="btn btn-info m-2"><i
                         class="bi bi-eye-fill"></i></button></a>
                   <a href="{{ route('cetakParpolsById', $data->partai_id) }}" target="_blank" type="button"
                     class="btn btn-success m-2"><i class="bi bi-printer"></i></a>

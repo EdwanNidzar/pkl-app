@@ -137,14 +137,14 @@ class ParpolController extends Controller
     /**
      * Retrieve violations related to a specific political party.
      */
-    public function pelanggaran($nama)
+    public function pelanggaran($id)
     {
         // Get the political party
-        $parpol = Parpol::where('nama_partai', $nama)->first();
+        $parpol = Parpol::where('id', $id)->first();
         
         // Get violations related to this political party
         $view_pelanggarans = DB::table('view_pelanggaran')
-                        ->where('nama_partai', $nama)
+                        ->where('partai_id', $id)
                         ->get();
         
         // Return view with data

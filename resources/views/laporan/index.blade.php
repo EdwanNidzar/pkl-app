@@ -40,7 +40,9 @@
       </div>
 
       <div class="card-body">
-        <a href="{{ route('laporan.create') }}" type="button" class="btn btn-primary mb-3">Tambah Data</a>
+        <a href="{{ route('laporan.create') }}" type="button" class="btn btn-primary mb-3"><i class="bi bi-plus"></i></a>
+        <a href="{{ route('cetakLaporan') }}" target="_blank" type="button" class="btn btn-success mb-3"><i
+            class="bi bi-printer"></i></a>
         <table id="laporan" class="table table-bordered table-striped mb-3">
           <thead>
             <tr align="center">
@@ -61,11 +63,11 @@
                 <td>{{ $data->nama_partai }}</td>
                 <td>
                   @if ($data->status == 0)
-                    Belum Verif
+                    <span class="badge badge-warning">Belum Verif</span>
                   @elseif ($data->status == 1)
-                    Verif
+                    <span class="badge badge-success">Verif</span>
                   @elseif ($data->status == 2)
-                    Reject
+                    <span class="badge badge-danger">Reject</span>
                   @endif
                 </td>
 
@@ -73,6 +75,8 @@
                   <div class="btn-group" role="group" aria-label="Basic example">
                     <a href="{{ route('laporan.show', $data->laporan_id) }}" class="btn btn-light m-2"><i
                         class="bi bi-eye-fill"></i></a>
+                    <a href="{{ route('cetakLaporanById', $data->laporan_id) }}" target="_blank"
+                      class="btn btn-success m-2"><i class="bi bi-printer"></i></a>
                     @if (auth()->user()->hasRole('bawaslu-kota'))
                       @if ($data->status == 0)
                         <form action="{{ route('laporan.verify', $data->laporan_id) }}" method="POST"

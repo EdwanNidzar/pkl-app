@@ -109,15 +109,6 @@
           </li>
         @endif
 
-        <li class="nav-item">
-          <a href="{{ route('maps') }}" class="nav-link {{ request()->routeIs('maps') ? 'active' : '' }}">
-            <i class="bi bi-geo-alt-fill me-2"></i>
-            <p>
-              Liat Pelanggaran di Peta
-            </p>
-          </a>
-        </li>
-
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

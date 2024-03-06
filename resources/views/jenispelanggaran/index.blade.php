@@ -60,7 +60,7 @@
                   </form>
                   <a href="{{ route('jenispelanggaran.show', $data->id_jenis_pelanggaran) }}"> <button
                       class="btn btn-light m-2"><i class="bi bi-eye-fill"></i></button></a>
-                  <a href="{{ route('jenispelanggaran.pelanggaran', $data->jenis_pelanggaran) }}"> <button
+                  <a href="{{ route('jenispelanggaran.pelanggaran', $data->id_jenis_pelanggaran) }}"> <button
                       class="btn btn-info m-2"><i class="bi bi-eye-fill"></i></button></a>
                   <a href="{{ route('cetakJenisPelanggaranById', $data->id_jenis_pelanggaran) }}" target="_blank"
                     type="button" class="btn btn-success m-2"><i class="bi bi-printer"></i></a>

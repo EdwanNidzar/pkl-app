@@ -14,7 +14,9 @@ return new class extends Migration
             CREATE VIEW view_pelanggaran AS
             SELECT
                 pelanggarans.id as pelanggaran_id,
+                jenis_pelanggarans.id as jenis_pelanggaran_id,
                 jenis_pelanggarans.jenis_pelanggaran as jenis_pelanggaran,
+                parpols.id as partai_id,
                 parpols.nama_partai as nama_partai,
                 pelanggarans.status_peserta_pemilu as status_peserta_pemilu,
                 pelanggarans.nama_bacaleg as nama_bacaleg,

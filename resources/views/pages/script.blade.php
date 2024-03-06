@@ -18,6 +18,9 @@
   $('#users').DataTable();
 </script>
 
+<script>
+  $('#suratkerja').DataTable();
+</script>
 
 <script>
   $(document).ready(function() {

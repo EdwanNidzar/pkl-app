@@ -49,16 +49,18 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('parpols', ParpolController::class)->middleware(['auth','role:bawaslu-provinsi']);
-Route::get('/parpols/{nama}/pelanggaran', [ParpolController::class, 'pelanggaran'])->name('parpols.pelanggaran');
+Route::get('/pelanggaran/parpols/{id}', [ParpolController::class, 'pelanggaran'])->name('parpols.pelanggaran');
 Route::get('/cetakParpols', [PDFController::class, 'cetakParpols'])->name('cetakParpols');
 Route::get('/cetakParpolsById/{id}', [PDFController::class, 'cetakParpolsById'])->name('cetakParpolsById');
 
 Route::resource('jenispelanggaran', JenisPelanggaranController::class)->middleware(['auth','role:bawaslu-provinsi']);
-Route::get('/jenispelanggaran/{nama}/pelanggaran', [JenisPelanggaranController::class, 'pelanggaran'])->name('jenispelanggaran.pelanggaran');
+Route::get('/pelanggaran/jenispelanggaran/{id}', [JenisPelanggaranController::class, 'pelanggaran'])->name('jenispelanggaran.pelanggaran');
 Route::get('/cetakJenisPelanggaran', [PDFController::class, 'cetakJenisPelanggaran'])->name('cetakJenisPelanggaran');
 Route::get('/cetakJenisPelanggaranById/{id}', [PDFController::class, 'cetakJenisPelanggaranById'])->name('cetakJenisPelanggaranById');
 
 Route::resource('pelanggaran', PelanggaranController::class);
+Route::get('/cetakPelanggaran', [PDFController::class, 'cetakPelanggaran'])->name('cetakPelanggaran');
+Route::get('/cetakPelanggaranById/{id}', [PDFController::class, 'cetakPelanggaranById'])->name('cetakPelanggaranById');
 
 Route::resource('laporan', LaporanController::class)
     ->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
@@ -68,8 +70,9 @@ Route::post('/laporan/{id}/verify', [LaporanController::class, 'verify'])
 Route::post('/laporan/{id}/reject', [LaporanController::class, 'reject'])
     ->name('laporan.reject')
     ->middleware(['auth', 'role:bawaslu-provinsi']);
-Route::get('/maps', [LaporanController::class, 'maps'])
-    ->name('maps');
+Route::get('/cetakLaporan', [PDFController::class, 'cetakLaporan'])->name('cetakLaporan');
+Route::get('/cetakLaporanById/{id}', [PDFController::class, 'cetakLaporanById'])->name('cetakLaporanById');
+
 
 Route::resource('suratkerja', SuratKerjaController::class)->middleware(['auth','role:bawaslu-provinsi|bawaslu-kota|panwascam']);
 
